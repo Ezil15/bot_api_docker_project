@@ -1,0 +1,3 @@
+fastapi == 0.88.0
+mysql-connector-python == 8.0.31
+uvicorn == 0.20.0

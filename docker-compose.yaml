@@ -1,0 +1,49 @@
+version: "3.7"
+services:
+
+  web:
+    container_name: "web"
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./app/conf.d:/etc/nginx/conf.d
+    networks:
+      - custom
+    depends_on:
+      - app
+
+  app:
+    container_name: "app"
+    image: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - custom
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7.16
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    networks:
+      - custom
+    volumes:
+      - ./mysql-dump:/docker-entrypoint-initdb.d
+      - ./my-db:/var/lib/mysql
+      
+networks:
+  custom:
+    driver: bridge

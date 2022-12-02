@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS `user_logs` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`user_id` INT(11) NULL DEFAULT NULL,
+	`answer_id` INT(11) NULL DEFAULT NULL,
+	`sended_text` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`from_dialogue` INT(11) NULL DEFAULT NULL,
+	`to_dialogue` INT(11) NULL DEFAULT NULL,
+	`send_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
