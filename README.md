@@ -16,6 +16,7 @@ git clone https://github.com/Ezil15/bot_api_docker_project.git
 
 Сначала необходимо настроить <b>docker-compose.yaml</b>, он лежит в корневой папке проекта. 
 Необходимо задать переменные среды для нашей будущей базы данных.
+В файле <b>docker-compose.yaml</b> найдите следующий код и измените его под ваши нужды.
 ```csharp
 db:
     image: mysql:5.7.16
